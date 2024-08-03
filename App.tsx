@@ -1,118 +1,136 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
+  View,
   StyleSheet,
   Text,
-  useColorScheme,
-  View,
+  Button,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+  Alert,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App = () => {
+  const [message, setMessage] = useState('');
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const sendMessage = () => {
+    // Logika pengiriman pesan
+    Alert.alert('Pesan terkirim:', message);
+    setMessage('');
   };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inbox}>
+        <Text style={styles.textInbox}>Halo gimana kabarmu Bro?👋</Text>
+      </View>
+      <View style={styles.outbox}>
+        <Text style={styles.textOutbox}>
+          baik broo,Alhamduliillah gw baru keterima kerja..
+        </Text>
+      </View>
+      <View style={styles.outbox}>
+        <Text style={styles.textOutbox}>Kalo lu gimana??</Text>
+      </View>
+      <View style={styles.inbox}>
+        <Text style={styles.textInbox}>
+          Yahh gitulahh, hidup ku gini-gini aja,nulis kodingan ntar error
+          ,nangis,banting keyboard,ketiduran,bangun lagi,ngulang lagii...😓
+        </Text>
+      </View>
+      <View style={styles.inbox}>
+        <Text style={styles.textInbox}>
+          Doain ya Bro semoga tahun depan bisa lolos SNBP UI Negeri 😁
+        </Text>
+      </View>
+      <View style={styles.outbox}>
+        <Text style={styles.textOutbox}>Yaa aminn..🤲</Text>
+      </View>
+      <View style={styles.outbox}>
+        <Text style={styles.textOutbox}>Semangat terus broo🚀</Text>
+      </View>
+      <View style={styles.outbox}>
+        <Text style={styles.textOutbox}>
+          Suatu saat nanti pasti lu juga bakal berhasil kook..
+        </Text>
+      </View>
+      <View style={styles.inbox}>
+        <Text style={styles.textInbox}>Aamiin🫶</Text>
+      </View>
+
+      <TextInput
+        style={styles.textInput}
+        placeholder="Message"
+        placeholderTextColor="#758694"
+        value={message}
+        onChangeText={setMessage}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    backgroundColor: '#17153B',
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    padding: 20,
+    flexDirection: 'column',
+    gap: 15,
+    fontFamily: 'RobotoMono',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  inbox: {
+    backgroundColor: '#7C00FE',
+    maxWidth: '70%', 
+    flexShrink: 1,
+    padding: 10,
+    alignSelf: 'flex-end',
+    borderRadius: 10,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  textInbox: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'semibold',
+    fontFamily: 'RobotoMono',
   },
-  highlight: {
-    fontWeight: '700',
+  outbox: {
+    alignSelf: 'flex-start',
+    maxWidth: '70%',
+    flexShrink: 1,
+    padding: 10,
+    backgroundColor: '#2E236C',
+    borderRadius: 10,
   },
+  textOutbox: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'semibold',
+    fontFamily: 'RobotoMono',
+  },
+  textInput: {
+    width: '100%',
+    height: '11%',
+    backgroundColor: '#2E236C',
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderBottomRightRadius: 25,
+    borderBottomLeftRadius: 25,
+    color: '#758694',
+    paddingLeft: 20,
+    fontFamily: 'RobotoMono',
+  },
+  // button: {
+  //   backgroundColor: '#7C00FE',
+  //   padding: 10,
+  //   borderRadius: 10,
+  //   alignItems: 'center',
+  // },
+  // buttonText: {
+  //   color: 'white',
+  //   fontSize: 16,
+  //   fontWeight: 'bold',
+  //   fontFamily: 'RobotoMono',
+  // },
 });
 
 export default App;
